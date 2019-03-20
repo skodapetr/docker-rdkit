@@ -30,5 +30,6 @@ ENV RDBASE=/opt/rdkit
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 
-COPY --from=rdkit-build /opt/rdkit/rdkit /opt/rdkit/rdkit
+COPY --from=rdkit-build /opt/rdkit/data /opt/rdkit/data
 COPY --from=rdkit-build /opt/rdkit/lib/*so* /opt/rdkit/lib/
+COPY --from=rdkit-build /opt/rdkit/rdkit /opt/rdkit/rdkit
