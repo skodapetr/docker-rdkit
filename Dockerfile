@@ -11,7 +11,7 @@ ARG RDKIT_VERSION=Release_2018_09_1
 RUN cd opt \
     && wget https://github.com/rdkit/rdkit/archive/${RDKIT_VERSION}.zip \
     && unzip ${RDKIT_VERSION}.zip \
-    && mv ${RDKIT_VERSION} rdkit \
+    && mv rdkit-${RDKIT_VERSION} rdkit \
     && rm ${RDKIT_VERSION}.zip
 
 RUN cd /opt/rdkit \
@@ -30,6 +30,6 @@ ENV RDBASE=/opt/rdkit
 ENV PYTHONPATH=$RDBASE:$PYTHONPATH
 ENV LD_LIBRARY_PATH=$RDBASE/lib:$LD_LIBRARY_PATH
 
-COPY --from=rdkit-build /opt/rdkit/data /opt/rdkit/data
+COPY --from=rdkit-build /opt/rdkit/Data /opt/rdkit/Data
 COPY --from=rdkit-build /opt/rdkit/lib/*so* /opt/rdkit/lib/
 COPY --from=rdkit-build /opt/rdkit/rdkit /opt/rdkit/rdkit
